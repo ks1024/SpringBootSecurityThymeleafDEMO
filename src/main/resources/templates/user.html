@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+</head>
+<body>
+<div class="container">
+
+    <div>
+        <h1>我的个人中心</h1>
+
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="登出"/>
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>

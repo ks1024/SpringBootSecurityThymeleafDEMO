@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+</head>
+<body>
+<div class="container">
+    <div>
+        <h1>Spring Boot Web Thymeleaf + Spring Security DEMO</h1>
+        <h2><a th:href="@{/user}">个人中心</a>（需要登录及用户权限）</h2>
+        <h2><a th:href="@{/about}">关于我们</a>（不要登录）</h2>
+    </div>
+</div>
+</body>
+</html>
