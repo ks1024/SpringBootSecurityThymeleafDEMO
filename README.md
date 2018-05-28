@@ -1,7 +1,7 @@
 # SpringBootSecurityThymeleaf DEMO
 
-![Screenshot1 from running application](screenshot1.jpeg)
-![Screenshot2 from running application](screenshot2.jpeg)
+![Screenshot1 from running application](screenshot1.png)
+![Screenshot2 from running application](screenshot2.png)
 
 ## 关于
 
