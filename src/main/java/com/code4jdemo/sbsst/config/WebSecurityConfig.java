@@ -2,9 +2,6 @@ package com.code4jdemo.sbsst.config;
 
 import com.code4jdemo.sbsst.auth.CustomAuthenticationProvider;
 import com.code4jdemo.sbsst.auth.CustomLoginAuthenticationFilter;
-import com.code4jdemo.sbsst.handler.LoginFailureHandler;
-import com.code4jdemo.sbsst.handler.LoginSuccessHandler;
-import com.code4jdemo.sbsst.handler.LogoutSuccessHandler;
 import com.code4jdemo.sbsst.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
@@ -38,16 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public LogoutSuccessHandler logoutSuccessHandler() {
-        return new LogoutSuccessHandler();
-    }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(customAuthenticationProvider);
         auth.userDetailsService(userDetailsService);
-//        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
     }
 
     @Override
@@ -70,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessHandler(logoutSuccessHandler());
+                .logoutSuccessUrl("/index");
         //自定义的login authentication filter插入到UsernamePasswordAuthenticationFilter的位置
         http.authorizeRequests().and()
                 .addFilterAt(new CustomLoginAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
